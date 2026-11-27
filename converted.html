@@ -1,0 +1,246 @@
+<p>&lt;!DOCTYPE html&gt;</p>
+<p>&lt;html lang="en"&gt;</p>
+<p>&lt;head&gt;</p>
+<p>&lt;meta charset="UTF-8"&gt;</p>
+<p>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p>&lt;title&gt;LifeDrop — Safe Blood Donation Network&lt;/title&gt;</p>
+<p>&lt;link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:ital,wght@0,300;0,400;0,600;1,300&amp;display=swap" rel="stylesheet"&gt;</p>
+<p>&lt;style&gt;</p>
+<p>&nbsp; :root {</p>
+<p>&nbsp; &nbsp; --red:#C8102E;--red-glow:rgba(200,16,46,0.3);</p>
+<p>&nbsp; &nbsp; --cream:#FFF5F0;--black:#0A0A0A;--gray:#1C1C1C;</p>
+<p>&nbsp; &nbsp; --lg:#2E2E2E;--muted:#888;--green:#22c55e;--amber:#f59e0b;</p>
+<p>&nbsp; }</p>
+<p>&nbsp; *{margin:0;padding:0;box-sizing:border-box;}</p>
+<p>&nbsp; body{background:var(--black);color:var(--cream);font-family:'DM Sans',sans-serif;overflow-x:hidden;}</p>
+<p>&nbsp; nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(10,10,10,0.93);backdrop-filter:blur(14px);border-bottom:1px solid rgba(200,16,46,0.2);}</p>
+<p>&nbsp; .logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:3px;color:var(--red);text-shadow:0 0 20px var(--red-glow);}</p>
+<p>&nbsp; .logo span{color:var(--cream);}</p>
+<p>&nbsp; nav ul{display:flex;gap:2rem;list-style:none;}</p>
+<p>&nbsp; nav ul a{text-decoration:none;color:#ccc;font-size:.82rem;letter-spacing:1px;text-transform:uppercase;font-weight:600;transition:color .2s;}</p>
+<p>&nbsp; nav ul a:hover{color:var(--red);}</p>
+<p>&nbsp; .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:6rem 3rem 3rem;position:relative;overflow:hidden;max-width:1200px;margin:0 auto;}</p>
+<p>&nbsp; .hero::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(200,16,46,0.14) 0%,transparent 70%);pointer-events:none;}</p>
+<p>&nbsp; .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,7vw,7rem);line-height:.9;letter-spacing:2px;}</p>
+<p>&nbsp; .hero h1 .accent{color:var(--red);display:block;}</p>
+<p>&nbsp; .hero p{margin-top:1.5rem;font-size:1rem;line-height:1.75;color:#bbb;max-width:420px;font-weight:300;}</p>
+<p>&nbsp; .cta{display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;}</p>
+<p>&nbsp; .badges{display:flex;gap:.6rem;margin-top:1.5rem;flex-wrap:wrap;}</p>
+<p>&nbsp; .badge{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .85rem;border-radius:50px;font-size:.7rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;}</p>
+<p>&nbsp; .bg{background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.2);}</p>
+<p>&nbsp; .ba{background:rgba(245,158,11,.1);color:#fbbf24;border:1px solid rgba(245,158,11,.2);}</p>
+<p>&nbsp; .bb{background:rgba(96,165,250,.1);color:#93c5fd;border:1px solid rgba(96,165,250,.2);}</p>
+<p>&nbsp; .br{background:rgba(200,16,46,.1);color:#ff8a9a;border:1px solid rgba(200,16,46,.2);}</p>
+<p>&nbsp; .hero-visual{display:flex;justify-content:center;align-items:center;}</p>
+<p>&nbsp; .drop-wrap{position:relative;width:240px;height:300px;}</p>
+<p>&nbsp; .drop-svg{width:100%;filter:drop-shadow(0 0 40px rgba(200,16,46,0.6));animation:float 4s ease-in-out infinite;}</p>
+<p>&nbsp; @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}</p>
+<p>&nbsp; .pr{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:280px;height:280px;border-radius:50%;border:1px solid rgba(200,16,46,.22);animation:pulse 2.5s ease-out infinite;}</p>
+<p>&nbsp; .pr:nth-child(2){animation-delay:.8s}.pr:nth-child(3){animation-delay:1.6s}</p>
+<p>&nbsp; @keyframes pulse{0%{transform:translate(-50%,-50%) scale(.5);opacity:1}100%{transform:translate(-50%,-50%) scale(2.2);opacity:0}}</p>
+<p>&nbsp; .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(200,16,46,.1);border-top:1px solid rgba(200,16,46,.1);border-bottom:1px solid rgba(200,16,46,.1);}</p>
+<p>&nbsp; .stat{background:var(--black);padding:2.5rem;text-align:center;}</p>
+<p>&nbsp; .stat-num{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:var(--red);text-shadow:0 0 20px var(--red-glow);}</p>
+<p>&nbsp; .stat-lbl{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:2px;margin-top:.4rem;}</p>
+<p>&nbsp; .btn-p{padding:.85rem 2.2rem;background:var(--red);color:#fff;border:none;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;transition:all .25s;box-shadow:0 0 30px var(--red-glow);}</p>
+<p>&nbsp; .btn-p:hover{background:#a50d25;transform:translateY(-2px);}</p>
+<p>&nbsp; .btn-p:disabled{opacity:.5;cursor:not-allowed;transform:none;}</p>
+<p>&nbsp; .btn-o{padding:.85rem 2.2rem;background:transparent;color:var(--cream);border:1px solid rgba(255,245,240,.3);border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;transition:all .25s;}</p>
+<p>&nbsp; .btn-o:hover{border-color:var(--red);color:var(--red);}</p>
+<p>&nbsp; .btn-sm{padding:.45rem 1.1rem!important;font-size:.78rem!important;}</p>
+<p>&nbsp; .btn-gh{background:none;border:1px solid var(--lg);color:#aaa;padding:.45rem 1rem;border-radius:4px;cursor:pointer;font-size:.78rem;font-family:'DM Sans',sans-serif;transition:all .2s;}</p>
+<p>&nbsp; .btn-gh:hover{border-color:var(--red);color:var(--red);}</p>
+<p>&nbsp; section{padding:5rem 3rem;max-width:1200px;margin:0 auto;}</p>
+<p>&nbsp; .sec-title{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:3px;margin-bottom:.4rem;}</p>
+<p>&nbsp; .sec-sub{color:var(--muted);font-size:.95rem;margin-bottom:3rem;}</p>
+<p>&nbsp; .tabs{display:flex;border-bottom:2px solid var(--lg);margin-bottom:2.5rem;flex-wrap:wrap;}</p>
+<p>&nbsp; .tab{padding:.9rem 1.8rem;cursor:pointer;font-size:.8rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;background:none;border-top:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif;white-space:nowrap;position:relative;}</p>
+<p>&nbsp; .tab.active{color:var(--red);border-bottom-color:var(--red);}</p>
+<p>&nbsp; .tab-content{display:none;}.tab-content.active{display:block;}</p>
+<p>&nbsp; .notif-dot{position:absolute;top:8px;right:10px;width:8px;height:8px;background:var(--red);border-radius:50%;animation:blink 1.5s ease-in-out infinite;}</p>
+<p>&nbsp; @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}</p>
+<p>&nbsp; .form{max-width:580px;}</p>
+<p>&nbsp; .frow{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.2rem;}</p>
+<p>&nbsp; .fg{display:flex;flex-direction:column;gap:.4rem;}</p>
+<p>&nbsp; .fg label{font-size:.75rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);font-weight:600;}</p>
+<p>&nbsp; .fg input,.fg select{background:var(--gray);border:1px solid var(--lg);border-radius:4px;padding:.75rem 1rem;color:var(--cream);font-family:'DM Sans',sans-serif;font-size:.95rem;outline:none;transition:border-color .2s;}</p>
+<p>&nbsp; .fg input:focus,.fg select:focus{border-color:var(--red);}</p>
+<p>&nbsp; .fg select option{background:var(--gray);}</p>
+<p>&nbsp; .help{font-size:.71rem;color:var(--muted);margin-top:.3rem;}</p>
+<p>&nbsp; .s-ok{color:var(--green);font-size:.78rem;} .s-err{color:#f87171;font-size:.78rem;}</p>
+<p>&nbsp; .otp-row{display:flex;gap:.6rem;align-items:flex-end;}</p>
+<p>&nbsp; .otp-row input{flex:1;}</p>
+<p>&nbsp; .otp-inp{width:140px!important;flex:none!important;letter-spacing:8px;font-size:1.2rem!important;text-align:center;}</p>
+<p>&nbsp; .consent-box{background:rgba(200,16,46,.06);border:1px solid rgba(200,16,46,.2);border-radius:6px;padding:1.2rem 1.4rem;margin:1.2rem 0;font-size:.84rem;color:#ccc;line-height:1.6;}</p>
+<p>&nbsp; .consent-box strong{color:var(--cream);}</p>
+<p>&nbsp; .ckrow{display:flex;gap:.8rem;align-items:flex-start;margin-top:.9rem;}</p>
+<p>&nbsp; .ckrow input[type=checkbox]{width:16px;height:16px;margin-top:3px;accent-color:var(--red);cursor:pointer;flex-shrink:0;}</p>
+<p>&nbsp; .ckrow label{font-size:.83rem;cursor:pointer;color:var(--cream);}</p>
+<p>&nbsp; .expiry-bar{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:4px;padding:.6rem 1rem;font-size:.78rem;color:#fbbf24;margin-top:.5rem;}</p>
+<p>&nbsp; .search-wrap{display:flex;max-width:600px;margin-bottom:1.5rem;border:1px solid var(--lg);border-radius:6px;overflow:hidden;transition:border-color .2s;}</p>
+<p>&nbsp; .search-wrap:focus-within{border-color:var(--red);box-shadow:0 0 0 2px var(--red-glow);}</p>
+<p>&nbsp; .search-wrap input{flex:1;background:var(--gray);border:none;padding:.9rem 1.2rem;color:var(--cream);font-family:'DM Sans',sans-serif;font-size:1rem;outline:none;}</p>
+<p>&nbsp; .search-wrap button{padding:.9rem 1.8rem;background:var(--red);border:none;color:#fff;cursor:pointer;font-weight:600;font-family:'DM Sans',sans-serif;font-size:.85rem;text-transform:uppercase;letter-spacing:1px;transition:background .2s;}</p>
+<p>&nbsp; .search-wrap button:hover{background:#a50d25;}</p>
+<p>&nbsp; .search-note{font-size:.78rem;color:var(--muted);margin-bottom:1.5rem;}</p>
+<p>&nbsp; .filters{display:flex;gap:.7rem;margin-bottom:2rem;flex-wrap:wrap;align-items:center;}</p>
+<p>&nbsp; .chip{padding:.32rem .9rem;border:1px solid var(--lg);border-radius:50px;background:none;color:#aaa;cursor:pointer;font-size:.76rem;font-family:'DM Sans',sans-serif;transition:all .2s;}</p>
+<p>&nbsp; .chip.active,.chip:hover{border-color:var(--red);color:var(--red);background:rgba(200,16,46,.08);}</p>
+<p>&nbsp; .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;}</p>
+<p>&nbsp; .card{background:var(--gray);border:1px solid var(--lg);border-radius:8px;padding:1.4rem;transition:all .3s;animation:up .3s ease forwards;}</p>
+<p>&nbsp; .card:hover{border-color:rgba(200,16,46,.4);transform:translateY(-2px);box-shadow:0 8px 30px rgba(200,16,46,.1);}</p>
+<p>&nbsp; @keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}</p>
+<p>&nbsp; .avatar{width:44px;height:44px;border-radius:50%;background:rgba(200,16,46,.12);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--red);border:2px solid rgba(200,16,46,.25);flex-shrink:0;}</p>
+<p>&nbsp; .tag{font-size:.7rem;padding:.2rem .65rem;border-radius:3px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;}</p>
+<p>&nbsp; .t-blood{background:rgba(200,16,46,.18);color:#ff8a9a;}</p>
+<p>&nbsp; .t-ok{background:rgba(34,197,94,.12);color:#4ade80;}</p>
+<p>&nbsp; .t-act{background:rgba(245,158,11,.12);color:#fbbf24;}</p>
+<p>&nbsp; .masked{font-size:.95rem;font-family:'Bebas Neue',sans-serif;letter-spacing:3px;color:#777;}</p>
+<p>&nbsp; .masked strong{color:var(--cream);}</p>
+<p>&nbsp; .ct-sep{border-top:1px solid var(--lg);padding-top:1rem;margin-top:.8rem;}</p>
+<p>&nbsp; .no-res{text-align:center;padding:4rem;color:var(--muted);}</p>
+<p>&nbsp; .no-res .icon{font-size:2.5rem;margin-bottom:1rem;}</p>
+<p>&nbsp; /* ── MANAGE PANEL ── */</p>
+<p>&nbsp; .manage-wrap{display:grid;grid-template-columns:240px 1fr;gap:2rem;max-width:900px;}</p>
+<p>&nbsp; .manage-sidebar{display:flex;flex-direction:column;gap:.5rem;}</p>
+<p>&nbsp; .mgmt-btn{display:flex;align-items:center;gap:.8rem;padding:.75rem 1rem;border-radius:6px;background:none;border:1px solid var(--lg);color:#aaa;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.85rem;text-align:left;transition:all .2s;position:relative;}</p>
+<p>&nbsp; .mgmt-btn:hover{border-color:rgba(200,16,46,.4);color:var(--cream);}</p>
+<p>&nbsp; .mgmt-btn.active{background:rgba(200,16,46,.1);border-color:rgba(200,16,46,.4);color:var(--cream);}</p>
+<p>&nbsp; .mgmt-btn .micon{font-size:1.1rem;}</p>
+<p>&nbsp; .mgmt-panel{display:none;}.mgmt-panel.active{display:block;}</p>
+<p>&nbsp; .inbox-badge{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:var(--red);color:#fff;font-size:.65rem;font-weight:700;padding:.1rem .45rem;border-radius:50px;min-width:20px;text-align:center;}</p>
+<p>&nbsp; /* REQUEST CARDS */</p>
+<p>&nbsp; .req-card{background:var(--gray);border:1px solid var(--lg);border-radius:8px;padding:1.2rem 1.4rem;margin-bottom:1rem;transition:border-color .2s;}</p>
+<p>&nbsp; .req-card.unread{border-left:3px solid var(--red);}</p>
+<p>&nbsp; .req-card:hover{border-color:rgba(200,16,46,.35);}</p>
+<p>&nbsp; .req-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.8rem;gap:1rem;}</p>
+<p>&nbsp; .req-name{font-weight:600;font-size:.95rem;}</p>
+<p>&nbsp; .req-time{font-size:.72rem;color:var(--muted);white-space:nowrap;}</p>
+<p>&nbsp; .req-reason{font-size:.88rem;color:#ccc;line-height:1.6;margin-bottom:.8rem;}</p>
+<p>&nbsp; .req-phone{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:2px;color:var(--green);}</p>
+<p>&nbsp; .req-actions{display:flex;gap:.7rem;margin-top:1rem;flex-wrap:wrap;}</p>
+<p>&nbsp; .req-meta{display:flex;gap:.6rem;margin-bottom:.6rem;flex-wrap:wrap;}</p>
+<p>&nbsp; .new-pill{background:rgba(200,16,46,.2);color:#ff8a9a;font-size:.68rem;font-weight:700;padding:.15rem .55rem;border-radius:3px;text-transform:uppercase;letter-spacing:.5px;}</p>
+<p>&nbsp; /* PROFILE PANEL */</p>
+<p>&nbsp; .profile-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}</p>
+<p>&nbsp; .data-item{background:rgba(255,255,255,.03);border:1px solid var(--lg);border-radius:6px;padding:.9rem 1rem;}</p>
+<p>&nbsp; .data-label{font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);font-weight:600;margin-bottom:.3rem;}</p>
+<p>&nbsp; .data-value{font-size:.95rem;color:var(--cream);}</p>
+<p>&nbsp; /* PRIVACY */</p>
+<p>&nbsp; .priv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:900px;}</p>
+<p>&nbsp; .priv-card{background:var(--gray);border:1px solid var(--lg);border-radius:8px;padding:2rem;}</p>
+<p>&nbsp; .priv-card h3{font-size:.9rem;margin-bottom:1rem;color:var(--cream);letter-spacing:1px;text-transform:uppercase;}</p>
+<p>&nbsp; .pi{display:flex;gap:.8rem;margin-bottom:1rem;align-items:flex-start;}</p>
+<p>&nbsp; .pi p{font-size:.84rem;color:#bbb;line-height:1.6;}</p>
+<p>&nbsp; .pi strong{color:var(--cream);}</p>
+<p>&nbsp; .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}</p>
+<p>&nbsp; .why-card{background:var(--gray);border-radius:8px;padding:2rem;border:1px solid var(--lg);}</p>
+<p>&nbsp; .why-card h3{font-size:1rem;margin-bottom:.7rem;font-weight:600;}</p>
+<p>&nbsp; .why-card p{color:var(--muted);font-size:.88rem;line-height:1.7;}</p>
+<p>&nbsp; .toast{position:fixed;bottom:2rem;right:2rem;z-index:999;background:var(--gray);border:1px solid var(--red);border-radius:6px;padding:.9rem 1.4rem;display:flex;align-items:center;gap:.7rem;font-size:.88rem;color:var(--cream);transform:translateY(100px);opacity:0;transition:all .4s cubic-bezier(.175,.885,.32,1.275);box-shadow:0 10px 30px rgba(0,0,0,.5);max-width:350px;}</p>
+<p>&nbsp; .toast.show{transform:translateY(0);opacity:1;}</p>
+<p>&nbsp; .tdot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}</p>
+<p>&nbsp; .overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:200;display:flex;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s;}</p>
+<p>&nbsp; .overlay.open{opacity:1;pointer-events:all;}</p>
+<p>&nbsp; .modal{background:var(--gray);border:1px solid rgba(200,16,46,.3);border-radius:10px;padding:2.5rem;max-width:460px;width:100%;position:relative;}</p>
+<p>&nbsp; .modal h2{font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:.5rem;}</p>
+<p>&nbsp; .modal p{color:#aaa;font-size:.88rem;line-height:1.6;margin-bottom:1.5rem;}</p>
+<p>&nbsp; .modal-x{position:absolute;top:1rem;right:1rem;background:none;border:none;color:#888;font-size:1.2rem;cursor:pointer;}</p>
+<p>&nbsp; .modal-x:hover{color:var(--cream);}</p>
+<p>&nbsp; footer{background:var(--gray);border-top:1px solid rgba(200,16,46,.15);text-align:center;padding:2rem;color:var(--muted);font-size:.82rem;}</p>
+<p>&nbsp; footer span{color:var(--red);}</p>
+<p>&nbsp; .flinks{display:flex;gap:2rem;justify-content:center;margin-bottom:1rem;flex-wrap:wrap;}</p>
+<p>&nbsp; .flinks a{color:var(--muted);text-decoration:none;font-size:.78rem;transition:color .2s;}</p>
+<p>&nbsp; .flinks a:hover{color:var(--red);}</p>
+<p>&nbsp; .divider{border:none;border-top:1px solid var(--lg);margin:1.5rem 0;}</p>
+<p>&nbsp; @media(max-width:768px){</p>
+<p>&nbsp; &nbsp; nav{padding:1rem 1.5rem;}nav ul{display:none;}</p>
+<p>&nbsp; &nbsp; .hero{grid-template-columns:1fr;padding:5rem 1.5rem 3rem;}</p>
+<p>&nbsp; &nbsp; .hero-visual{margin-top:2rem;}</p>
+<p>&nbsp; &nbsp; .stats{grid-template-columns:1fr;}</p>
+<p>&nbsp; &nbsp; section{padding:3rem 1.5rem;}</p>
+<p>&nbsp; &nbsp; .why-grid,.priv-grid{grid-template-columns:1fr;}</p>
+<p>&nbsp; &nbsp; .frow{grid-template-columns:1fr;}</p>
+<p>&nbsp; &nbsp; .manage-wrap{grid-template-columns:1fr;}</p>
+<p>&nbsp; &nbsp; .profile-row{grid-template-columns:1fr;}</p>
+<p>&nbsp; }</p>
+<p>&lt;/style&gt;</p>
+<p>&lt;/head&gt;</p>
+<p>&lt;body&gt;</p>
+<p>&lt;nav&gt;</p>
+<p>&nbsp; &lt;div class="logo"&gt;LIFE&lt;span&gt;DROP&lt;/span&gt;&lt;/div&gt;</p>
+<p>&nbsp; &lt;ul&gt;</p>
+<p>&nbsp; &nbsp; &lt;li&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;</p>
+<p>&nbsp; &nbsp; &lt;li&gt;&lt;a href="#portal"&gt;Register / Find&lt;/a&gt;&lt;/li&gt;</p>
+<p>&nbsp; &nbsp; &lt;li&gt;&lt;a href="#privacy"&gt;Privacy&lt;/a&gt;&lt;/li&gt;</p>
+<p>&nbsp; &nbsp; &lt;li&gt;&lt;a href="#why"&gt;Why Donate&lt;/a&gt;&lt;/li&gt;</p>
+<p>&nbsp; &lt;/ul&gt;</p>
+<p>&lt;/nav&gt;</p>
+<p>&lt;!-- HERO --&gt;</p>
+<p>&lt;div id="home" style="max-width:1200px;margin:0 auto;"&gt;</p>
+<p>&lt;div class="hero"&gt;</p>
+<p>&nbsp; &lt;div&gt;</p>
+<p>&nbsp; &nbsp; &lt;h1&gt;YOUR BLOOD &lt;span class="accent"&gt;SAVES LIVES&lt;/span&gt;&lt;/h1&gt;</p>
+<p>&nbsp; &nbsp; &lt;p&gt;A safe, consent-first donor network. Your privacy is protected at every step — compliant with India's Digital Personal Data Protection Act 2023.&lt;/p&gt;</p>
+<p>&nbsp; &nbsp; &lt;div class="cta"&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &lt;button class="btn-p" onclick="switchTab('register')"&gt;Register as Donor&lt;/button&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &lt;button class="btn-o" onclick="switchTab('find')"&gt;Find Blood Now&lt;/button&gt;</p>
+<p>&nbsp; &nbsp; &lt;/div&gt;</p>
+<p>&nbsp; &nbsp; &lt;div class="badges"&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &lt;span class="badge bg"&gt;✓ Number Masking&lt;/span&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &lt;span class="badge ba"&gt;✓ OTP Verified&lt;/span&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &lt;span class="badge bb"&gt;✓ DPDPA Compliant&lt;/span&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &lt;span class="badge br"&gt;✓ Donor Inbox&lt;/span&gt;</p>
+<p>&nbsp; &nbsp; &lt;/div&gt;</p>
+<p>&nbsp; &lt;/div&gt;</p>
+<p>&nbsp; &lt;div class="hero-visual"&gt;</p>
+<p>&nbsp; &nbsp; &lt;div class="drop-wrap"&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="pr"&gt;&lt;/div&gt;&lt;div class="pr"&gt;&lt;/div&gt;&lt;div class="pr"&gt;&lt;/div&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &lt;svg class="drop-svg" viewBox="0 0 200 260" fill="none"&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;defs&gt;&lt;radialGradient id="dg" cx="40%" cy="35%" r="65%"&gt;&lt;stop offset="0%" stop-color="#ff4d6d"/&gt;&lt;stop offset="100%" stop-color="#8B0000"/&gt;&lt;/radialGradient&gt;&lt;/defs&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;path d="M100 10 C100 10 20 100 20 155 C20 205 55 240 100 240 C145 240 180 205 180 155 C180 100 100 10 100 10Z" fill="url(#dg)"/&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;path d="M65 140 C65 120 80 108 100 108 C110 108 118 112 124 118" stroke="rgba(255,255,255,0.3)" stroke-width="3" stroke-linecap="round" fill="none"/&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;circle cx="75" cy="155" r="8" fill="rgba(255,255,255,0.12)"/&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;text x="100" y="206" text-anchor="middle" font-size="26" fill="rgba(255,255,255,0.22)"&gt;🛡️&lt;/text&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &lt;/svg&gt;</p>
+<p>&nbsp; &nbsp; &lt;/div&gt;</p>
+<p>&nbsp; &lt;/div&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;!-- STATS --&gt;</p>
+<p>&lt;div class="stats"&gt;</p>
+<p>&nbsp; &lt;div class="stat"&gt;&lt;div class="stat-num" id="donorCount"&gt;0&lt;/div&gt;&lt;div class="stat-lbl"&gt;Verified Donors&lt;/div&gt;&lt;/div&gt;</p>
+<p>&nbsp; &lt;div class="stat"&gt;&lt;div class="stat-num"&gt;8&lt;/div&gt;&lt;div class="stat-lbl"&gt;Blood Types&lt;/div&gt;&lt;/div&gt;</p>
+<p>&nbsp; &lt;div class="stat"&gt;&lt;div class="stat-num"&gt;100%&lt;/div&gt;&lt;div class="stat-lbl"&gt;Consent-Based&lt;/div&gt;&lt;/div&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;!-- PORTAL --&gt;</p>
+<p>&lt;section id="portal"&gt;</p>
+<p>&nbsp; &lt;div class="sec-title"&gt;DONOR &lt;span style="color:var(--red)"&gt;PORTAL&lt;/span&gt;&lt;/div&gt;</p>
+<p>&nbsp; &lt;div class="sec-sub"&gt;OTP-verified · Number masked · Donor inbox to view &amp; respond to requests · DPDPA compliant&lt;/div&gt;</p>
+<p>&nbsp; &lt;div class="tabs"&gt;</p>
+<p>&nbsp; &nbsp; &lt;button class="tab active" id="tab-register" onclick="switchTab('register')"&gt;Register Donor&lt;/button&gt;</p>
+<p>&nbsp; &nbsp; &lt;button class="tab" id="tab-find" onclick="switchTab('find')"&gt;Find Blood&lt;/button&gt;</p>
+<p>&nbsp; &nbsp; &lt;button class="tab" id="tab-manage" onclick="switchTab('manage')"&gt;My Account&lt;/button&gt;</p>
+<p>&nbsp; &lt;/div&gt;</p>
+<p>&nbsp; &lt;!-- ══ REGISTER ══ --&gt;</p>
+<p>&nbsp; &lt;div class="tab-content active" id="content-register"&gt;</p>
+<p>&nbsp; &nbsp; &lt;div class="form"&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &lt;div id="step-1"&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div style="font-size:.74rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:1.5rem;"&gt;Step 1 of 3 — Basic Information&lt;/div&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="frow"&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="fg"&gt;&lt;label&gt;Full Name&lt;/label&gt;&lt;input type="text" id="reg-name" placeholder="e.g. Ravi Kumar"/&gt;&lt;span class="help"&gt;Only initials shown publicly (R.K.)&lt;/span&gt;&lt;/div&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="fg"&gt;&lt;label&gt;Blood Group&lt;/label&gt;&lt;select id="reg-blood"&gt;&lt;option value=""&gt;Select&lt;/option&gt;&lt;option&gt;A+&lt;/option&gt;&lt;option&gt;A−&lt;/option&gt;&lt;option&gt;B+&lt;/option&gt;&lt;option&gt;B−&lt;/option&gt;&lt;option&gt;AB+&lt;/option&gt;&lt;option&gt;AB−&lt;/option&gt;&lt;option&gt;O+&lt;/option&gt;&lt;option&gt;O−&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;/div&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="frow"&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="fg"&gt;&lt;label&gt;Area / City&lt;/label&gt;&lt;input type="text" id="reg-area" placeholder="e.g. Nellore"/&gt;&lt;span class="help"&gt;City-level only. No street address.&lt;/span&gt;&lt;/div&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="fg"&gt;&lt;label&gt;Age Range&lt;/label&gt;&lt;select id="reg-age"&gt;&lt;option value=""&gt;Select&lt;/option&gt;&lt;option&gt;18–25&lt;/option&gt;&lt;option&gt;26–35&lt;/option&gt;&lt;option&gt;36–45&lt;/option&gt;&lt;option&gt;46–55&lt;/option&gt;&lt;option&gt;56–65&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;/div&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;button class="btn-p" onclick="goStep2()"&gt;Continue to Verify →&lt;/button&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &lt;/div&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &lt;div id="step-2" style="display:none;"&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div style="font-size:.74rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:1.5rem;"&gt;Step 2 of 3 — Phone Verification&lt;/div&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="fg" style="max-width:380px;margin-bottom:1.2rem;"&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;label&gt;Mobile Number&lt;/label&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="otp-row"&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;input type="tel" id="reg-phone" placeholder="10-digit number" maxlength="10"/&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;button class="btn-p btn-sm" onclick="sendOTP()" id="send-btn"&gt;Send OTP&lt;</p>
